@@ -12,7 +12,7 @@ services:
       - ./:/app/e_lib
     environment:
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
-    command: bash -c "python manage.py migrate && python manage.py loaddata dictionary/fixtures/languages.json && python manage.py runserver 0.0.0.0:9000"
+    command: bash -c "python manage.py migrate && python manage.py loaddata dictionary/fixtures/*.json && python manage.py runserver 0.0.0.0:9000"
 
   # Redis
   redis:

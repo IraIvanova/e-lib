@@ -1,0 +1,282 @@
+[
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 1,
+    "fields": {
+      "name": "Coordinating Conjunction",
+      "code": "CC"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 2,
+    "fields": {
+      "name": "Cardinal Digit",
+      "code": "CD"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 3,
+    "fields": {
+      "name": "Determiner",
+      "code": "DT"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 4,
+    "fields": {
+      "name": "Existential There",
+      "code": "EX"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 5,
+    "fields": {
+      "name": "Foreign Word",
+      "code": "FW"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 6,
+    "fields": {
+      "name": "Preposition/Subordinating Conjunction",
+      "code": "IN"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 7,
+    "fields": {
+      "name": "Adjective",
+      "code": "JJ"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 8,
+    "fields": {
+      "name": "Adjective, Comparative",
+      "code": "JJR"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 9,
+    "fields": {
+      "name": "Adjective, Superlative",
+      "code": "JJS"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 10,
+    "fields": {
+      "name": "List Marker",
+      "code": "LS"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 11,
+    "fields": {
+      "name": "Modal",
+      "code": "MD"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 12,
+    "fields": {
+      "name": "Noun, Singular",
+      "code": "NN"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 13,
+    "fields": {
+      "name": "Noun Plural",
+      "code": "NNS"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 14,
+    "fields": {
+      "name": "Proper Noun, Singular",
+      "code": "NNP"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 15,
+    "fields": {
+      "name": "Proper Noun, Plural",
+      "code": "NNPS"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 16,
+    "fields": {
+      "name": "Predeterminer",
+      "code": "PDT"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 17,
+    "fields": {
+      "name": "Possessive Ending",
+      "code": "POS"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 18,
+    "fields": {
+      "name": "Personal Pronoun",
+      "code": "PRP"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 19,
+    "fields": {
+      "name": "Possessive Pronoun",
+      "code": "PRP$"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 20,
+    "fields": {
+      "name": "Adverb",
+      "code": "RB"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 21,
+    "fields": {
+      "name": "Adverb, Comparative",
+      "code": "RBR"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 22,
+    "fields": {
+      "name": "Adverb, Superlative",
+      "code": "RBS"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 23,
+    "fields": {
+      "name": "Particle",
+      "code": "RP"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 24,
+    "fields": {
+      "name": "To",
+      "code": "TO"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 25,
+    "fields": {
+      "name": "Interjection",
+      "code": "UH"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 26,
+    "fields": {
+      "name": "Verb, Base Form",
+      "code": "VB"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 27,
+    "fields": {
+      "name": "Verb, Past Tense",
+      "code": "VBD"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 28,
+    "fields": {
+      "name": "Verb, Gerund/Present Participle",
+      "code": "VBG"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 29,
+    "fields": {
+      "name": "Verb, Past Participle",
+      "code": "VBN"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 30,
+    "fields": {
+      "name": "Verb, Sing. Present, Non-3d",
+      "code": "VBP"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 31,
+    "fields": {
+      "name": "Verb, 3rd Person Sing. Present",
+      "code": "VBZ"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 32,
+    "fields": {
+      "name": "Wh-Determiner",
+      "code": "WDT"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 33,
+    "fields": {
+      "name": "Wh-Pronoun",
+      "code": "WP"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 34,
+    "fields": {
+      "name": "Possessive Wh-Pronoun",
+      "code": "WP$"
+    }
+  },
+  {
+    "model": "dictionary.partOfSpeech",
+    "pk": 35,
+    "fields": {
+      "name": "Wh-Adverb",
+      "code": "WRB"
+    }
+  }
+]
