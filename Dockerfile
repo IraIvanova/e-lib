@@ -17,4 +17,8 @@ ENV DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
 
 WORKDIR /app/e_lib
 
-EXPOSE 9000
+EXPOSE 9026
+
+CMD ["python", "manage.py", "migrate"]
+CMD ["python", "manage.py", "loaddata", "dictionary/fixtures/*.json"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:9026"]

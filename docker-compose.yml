@@ -2,17 +2,18 @@ version: '3'
 
 services:
   # Django application
-  e_lib:
+  elib:
+    container_name: elib
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "9000:9000"
+      - "9026:9026"
     volumes:
       - ./:/app/e_lib
     environment:
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
-    command: bash -c "python manage.py migrate && python manage.py loaddata dictionary/fixtures/*.json && python manage.py runserver 0.0.0.0:9000"
+#    command: bash -c "python manage.py migrate && python manage.py loaddata dictionary/fixtures/*.json && python manage.py runserver port=9025"
 
   # Redis
   redis:
