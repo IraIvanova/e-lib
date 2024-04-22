@@ -9,9 +9,18 @@ class Language(models.Model):
         return self.name
 
 
+class PartOfSpeech(models.Model):
+    name = models.CharField(max_length=100)
+    code = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+
+
 class Word(models.Model):
     word = models.CharField(max_length=100)
     synonyms = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='related_synonyms')
+    parts_of_speech = models.ManyToManyField(PartOfSpeech)
 
     def __str__(self):
         return self.word
@@ -24,4 +33,6 @@ class Translation(models.Model):
 
     def __str__(self):
         return f"{self.language}: {self.translation}"
+
+
 

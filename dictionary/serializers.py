@@ -17,7 +17,7 @@ class WordSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         translations_data = validated_data.get('translations', [])
-        word = Word.objects.create(**validated_data)
+        word = Word.objects.create(word=validated_data.get('word'))
 
         translations_instances = []
         for translation_data in translations_data:
