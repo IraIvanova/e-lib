@@ -5,15 +5,28 @@ from .models import Word, Translation, Language
 class TranslationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Translation
-        fields = ['id', 'language', 'translation']
+        fields = ['word_id', 'language', 'translation']
 
 
-class WordSerializer(serializers.ModelSerializer):
-    translations = TranslationSerializer(many=True)
-
+class SynonymsSerializer(serializers.ModelSerializer):
+    translations = TranslationSerializer(many=True, read_only=True)
     class Meta:
         model = Word
         fields = ['id', 'word', 'translations']
+
+
+class SynonymsListingField(serializers.RelatedField):
+    def to_representation(self, value):
+
+        return 'Track444'
+
+class WordSerializer(serializers.ModelSerializer):
+    translations = TranslationSerializer(many=True)
+    synonyms = SynonymsSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Word
+        fields = ['id', 'word', 'translations', 'synonyms']
 
     def create(self, validated_data):
         translations_data = validated_data.get('translations', [])

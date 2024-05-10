@@ -21,6 +21,7 @@ class Word(models.Model):
     word = models.CharField(max_length=100)
     synonyms = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='related_synonyms')
     parts_of_speech = models.ManyToManyField(PartOfSpeech)
+    synonyms = models.ManyToManyField('self')
 
     def __str__(self):
         return self.word
@@ -33,6 +34,3 @@ class Translation(models.Model):
 
     def __str__(self):
         return f"{self.language}: {self.translation}"
-
-
-

@@ -2,7 +2,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import wordnet
-from dictionary.models import Word, PartOfSpeech
+from dictionary.models import Word, PartOfSpeech, Translation
 from collections import defaultdict
 
 
@@ -40,6 +40,8 @@ def analyze_text(text):
             new_words_added += 1
             word_instance = Word.objects.create(word=lemma)
             word_instance.parts_of_speech.set(partOfSpeech)
+            translation_instance = Translation.objects.create(language='English', translation=lemma, word=word_instance)
+            word_instance.translations.set([].append(translation_instance))
 
     # return AnalysisResultDTOSerializer(AnalysisResultDTO(total_words, new_words_added)).data
     return {
@@ -58,4 +60,4 @@ def get_wordnet_pos(treebank_tag):
     elif treebank_tag.startswith('R'):
         return wordnet.ADV
     else:
-        return wordnet.NOUN  # за замовчуванням, якщо частину мови не вдалося визначити, вважаємо, що слово - іменник
+        return wordnet.NOUN

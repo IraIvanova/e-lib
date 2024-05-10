@@ -1,12 +1,14 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
-from .models import Word, Translation
-from django.db.models import Q
+from rest_framework.views import APIView
+from .models import Word, Translation, Language
+from django.db.models import Q, Prefetch
 from .serializers import WordSerializer, TranslationSerializer
 
 
 class WordsListCreateView(generics.ListCreateAPIView):
     queryset = Word.objects.all()
+
     serializer_class = WordSerializer
 
     def create(self, request, *args, **kwargs):
@@ -17,11 +19,16 @@ class WordsListCreateView(generics.ListCreateAPIView):
 
         return super().create(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         search_string = request.GET.get('search')
+        language = Language.objects.filter(name=request.GET.get('language')).first()
+        word_id = request.GET.get('id')
 
         if search_string:
-            self.queryset = self.queryset.filter(Q(translations__translation__icontains=search_string)).distinct()
+            self.queryset = self.queryset.filter(Q(translations__translation__icontains=search_string),
+                                                 Q(translations__language=language)).distinct()
+        elif word_id:
+            self.queryset = self.queryset.filter(id=word_id)
 
         return super().list(request, *args, **kwargs)
 
@@ -34,3 +41,25 @@ class WordsDetailView(generics.CreateAPIView, generics.RetrieveUpdateDestroyAPIV
 class TranslationListCreateAPIView(generics.ListCreateAPIView):
     queryset = Translation.objects.all()
     serializer_class = TranslationSerializer
+
+    def list(self, request, *args, **kwargs):
+        search_string = request.GET.get('search')
+        language = Language.objects.filter(name=request.GET.get('language')).first()
+        word_id = request.GET.get('id')
+
+        if search_string:
+            self.queryset = self.queryset.filter(translation__icontains=search_string, language=language)
+        elif word_id:
+            self.queryset = self.queryset.filter(word_id=word_id, language=language)
+
+        return super().list(request, *args, **kwargs)
+
+
+class WordSynonymsActionsAPIView(APIView):
+    def post(self, request, format=None):
+        data = request.data
+        word = Word.objects.get(pk=data.get("word_id"))
+        synonym_word = Word.objects.get(pk=data.get("synonym_word_id"))
+        word.synonyms.add(synonym_word)
+
+        return "ok"
