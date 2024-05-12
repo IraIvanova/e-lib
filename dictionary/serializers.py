@@ -1,32 +1,35 @@
 from rest_framework import serializers
 from .models import Word, Translation, Language
+from .utils import get_example_sentences
 
 
 class TranslationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Translation
-        fields = ['word_id', 'language', 'translation']
+        fields = ['word_id', 'language', 'translation', 'transcription']
 
 
 class SynonymsSerializer(serializers.ModelSerializer):
     translations = TranslationSerializer(many=True, read_only=True)
+
     class Meta:
         model = Word
         fields = ['id', 'word', 'translations']
 
 
-class SynonymsListingField(serializers.RelatedField):
-    def to_representation(self, value):
+class ExtraFieldSerializer(serializers.Serializer):
+    def to_representation(self, instance):
+        return get_example_sentences(instance.word)
 
-        return 'Track444'
 
 class WordSerializer(serializers.ModelSerializer):
     translations = TranslationSerializer(many=True)
     synonyms = SynonymsSerializer(many=True, read_only=True)
+    examples = ExtraFieldSerializer(source='*')
 
     class Meta:
         model = Word
-        fields = ['id', 'word', 'translations', 'synonyms']
+        fields = ['id', 'word', 'translations', 'synonyms', 'examples']
 
     def create(self, validated_data):
         translations_data = validated_data.get('translations', [])
@@ -36,7 +39,9 @@ class WordSerializer(serializers.ModelSerializer):
         for translation_data in translations_data:
             language = Language.objects.filter(locale=translation_data['language']).first()
             if language:
-                translation = Translation.objects.create(word=word, language=language, translation=translation_data['translation'])
+                translation = Translation.objects.create(word=word, language=language,
+                                                         translation=translation_data['translation'],
+                                                         transcription=translation_data['transcription'])
                 translations_instances.append(translation)
 
         word.translations.set(translations_instances)

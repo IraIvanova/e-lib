@@ -30,6 +30,7 @@ class Word(models.Model):
 class Translation(models.Model):
     language = models.CharField(max_length=50)
     translation = models.CharField(max_length=100)
+    transcription = models.CharField(max_length=100, null=True, blank=True)
     word = models.ForeignKey(Word, related_name='translations', on_delete=models.CASCADE)
 
     def __str__(self):

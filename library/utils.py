@@ -41,7 +41,7 @@ def analyze_text(text):
             word_instance = Word.objects.create(word=lemma)
             word_instance.parts_of_speech.set(partOfSpeech)
             translation_instance = Translation.objects.create(language='English', translation=lemma, word=word_instance)
-            word_instance.translations.set([].append(translation_instance))
+            word_instance.translations.add(translation_instance)
 
     # return AnalysisResultDTOSerializer(AnalysisResultDTO(total_words, new_words_added)).data
     return {
