@@ -19,13 +19,15 @@ class SynonymsSerializer(serializers.ModelSerializer):
 
 class ExtraFieldSerializer(serializers.Serializer):
     def to_representation(self, instance):
-        return get_example_sentences(instance.word)
+        get_data = self.context['request'].GET
+        translation = Translation.objects.filter(language=get_data['language'], word_id=instance.id).first()
+        return get_example_sentences(translation.translation, self.context['request'].GET['language'])
 
 
 class WordSerializer(serializers.ModelSerializer):
     translations = TranslationSerializer(many=True)
     synonyms = SynonymsSerializer(many=True, read_only=True)
-    examples = ExtraFieldSerializer(source='*')
+    examples = ExtraFieldSerializer(source='*', required=False)
 
     class Meta:
         model = Word
@@ -50,7 +52,6 @@ class WordSerializer(serializers.ModelSerializer):
 
     def update(self, word, validated_data):
         word.word = validated_data.get('word')
-        # word.synonyms.set(validated_data.get('synonyms', word.synonyms.all()))
         word.save()
 
         translations_data = validated_data.get('translations', [])

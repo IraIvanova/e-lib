@@ -2,11 +2,12 @@ from library.models import Text
 import re
 
 
-def get_example_sentences(word):
+def get_example_sentences(word, language):
     examples = []
-    books = Text.objects.all()
+    books = Text.objects.filter(language=language)
 
     for book in books:
+        print(book.content)
         if len(examples) >= 5:
             return examples
 
